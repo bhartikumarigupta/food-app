@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1035349511811",
+    "project_id": "flogo-6cce8",
+    "storage_bucket": "flogo-6cce8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1035349511811:android:9a05c07fb4930f053595b6",
+        "android_client_info": {
+          "package_name": "com.example.flogo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1035349511811-jr1suebcigj5p167td8k5uvmpo8nspc8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0FOnkeGt2tcxlyvCyf6p_xffUGzr-Spw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1035349511811-jr1suebcigj5p167td8k5uvmpo8nspc8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
