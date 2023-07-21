@@ -86,7 +86,7 @@ class _LoginPageState extends State<LoginPage> {
                               hintStyle: TextStyle(color: Colors.grey),
                               border: InputBorder.none),
                           validator: (value) {
-                            if (value!.isEmpty || value.contains('@')) {
+                            if (value!.isEmpty || !(value.contains('@'))) {
                               return 'please enter your email';
                             } else {
                               return null;
@@ -140,12 +140,17 @@ class _LoginPageState extends State<LoginPage> {
                   child: ElevatedButton(
                       onPressed: () async {
                         try {
-                          await AuthServices.signinUser(
-                              email, password, context);
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => homepage()));
+                          if (_formkey.currentState!.validate()) {
+                            print("object");
+                            bool signup = await AuthServices()
+                                .signinUser(email, password, context);
+                            if (signup) {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => homepage()));
+                            }
+                          }
                         } catch (e) {
                           print(e);
                         }

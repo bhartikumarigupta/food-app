@@ -109,7 +109,7 @@ class _onbording4State extends State<onbording4> {
                               hintStyle: TextStyle(color: Colors.grey),
                               border: InputBorder.none),
                           validator: (value) {
-                            if (value!.isEmpty || value.contains('@')) {
+                            if (value!.isEmpty || !(value.contains('@'))) {
                               return 'please enter your email';
                             } else {
                               return null;
@@ -165,12 +165,19 @@ class _onbording4State extends State<onbording4> {
                   padding: const EdgeInsets.all(15.0),
                   child: ElevatedButton(
                       onPressed: () async {
-                        await AuthServices.signupUser(
-                            email, password, fullname, context);
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => homepage()));
+                        try {
+                          if (_formkey.currentState!.validate()) {
+                            print("object");
+                            bool signup = await AuthServices()
+                                .signupUser(email, password, fullname, context);
+                            if (signup) {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => homepage()));
+                            }
+                          }
+                        } catch (e) {}
                       },
                       style: ButtonStyle(
                         backgroundColor:

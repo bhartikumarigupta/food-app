@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'firebaseFunctions.dart';
 
 class AuthServices {
-  static signupUser(
+  Future<bool> signupUser(
       String email, String password, String name, BuildContext context) async {
     try {
       UserCredential userCredential = await FirebaseAuth.instance
@@ -15,6 +15,7 @@ class AuthServices {
       await FirestoreServices.saveUser(name, email, userCredential.user!.uid);
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text('Registration Successful')));
+      return true;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -27,15 +28,19 @@ class AuthServices {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(e.toString())));
     }
+    return false;
   }
 
-  static signinUser(String email, String password, BuildContext context) async {
+  Future<bool> signinUser(
+      String email, String password, BuildContext context) async {
     try {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
 
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('You are Logged in')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text('You are Logged in'),
+      ));
+      return true;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -45,5 +50,6 @@ class AuthServices {
             .showSnackBar(SnackBar(content: Text('Password did not match')));
       }
     }
+    return false;
   }
 }
