@@ -396,10 +396,10 @@ class _HomePageState extends State<HomePage> {
                 height: 8,
               ),
               Padding(
-                padding: const EdgeInsets.only(right: 180.0),
+                padding: const EdgeInsets.only(right: 240.0),
                 child: Text("Service",
                     style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 23)),
               ),
               service(),
               lastpage(),
